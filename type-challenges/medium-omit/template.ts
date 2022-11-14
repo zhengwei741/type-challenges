@@ -21,6 +21,8 @@ type MyOmit<T, K extends keyof T> = {
   [P in keyof T as P extends K ? never : P]: T[P];
 };
 
+// type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+
 function MyOmit(obj, arr: unknown[] = []) {
   // 循环arr 剔除 obj 中相同的key
   let ret = {};
