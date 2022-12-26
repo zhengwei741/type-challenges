@@ -4,14 +4,14 @@
 
 // 例如：Promise<ExampleType>，请你返回 ExampleType 类型。
 
-type ExampleType = Promise<string>
+type ExampleType = Promise<string>;
 
-type Result = MyAwaited<ExampleType> // string
+type Result = MyAwaited<ExampleType>; // string
 
-type MyAwaited<T extends Promise<unknown>> = 
-  T extends Promise<infer X> // 如果是prmose
-    ? X extends Promise<unknown> // 假设X还是promise
-      ? MyAwaited<X> : X // 递归调用MyAwaited 如果不是返回X
-  : never // 如果不是promise 返回never
+type MyAwaited<T extends Promise<unknown>> = T extends Promise<infer X> // 如果是prmose
+  ? X extends Promise<unknown> // 假设X还是promise
+    ? MyAwaited<X>
+    : X // 递归调用MyAwaited 如果不是返回X
+  : never; // 如果不是promise 返回never
 
 // infer 假设一个值
